@@ -1,5 +1,5 @@
 'use strict';
-var webroot = '/sage';
+var webroot = '';
 $.fn.outerHTML = function(s) {
     if (s) {
       if (this.length > 0) {this[0].outerHTML = s; return this}

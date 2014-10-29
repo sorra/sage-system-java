@@ -3,14 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>sage</groupId>
   <artifactId>sage</artifactId>
-  <packaging>war</packaging>
+  <!-- <packaging>war</packaging> -->
   <version>1.0-SNAPSHOT</version>
   <name>Ziyuekong Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.0.5.RELEASE</spring.version>
+    <spring.version>4.1.1.RELEASE</spring.version>
+    <spring-boot.version>1.2.0.M2</spring-boot.version>
   </properties>
 
   <dependencies>
@@ -18,7 +19,7 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.0.1</version>
-      <scope>provided</scope>
+      <!-- <scope>provided</scope> -->
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
@@ -40,6 +41,7 @@
       <artifactId>commons-pool</artifactId>
       <version>1.6</version>
     </dependency>
+
   	<dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
@@ -110,26 +112,40 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
+
+    <dependency>  
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <dependency>  
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>4.3.5.Final</version>
     </dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.4.1</version>
+      <version>2.4.2</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.4.1.1</version>
+      <version>2.4.2</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.4.1</version>
+      <version>2.4.2</version>
     </dependency>
+
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
@@ -167,7 +183,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>sage</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -180,24 +195,24 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <url>http://localhost:8080/manager/text</url>
-          <server>tomcat</server>
-          <path>/sage</path>
-        </configuration>
-        <executions>
-          <execution>
-            <id>tomcat-deploy</id>
-            <phase>deploy</phase>
-            <goals>
-              <goal>deploy</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+      </plugin>  
+    </plugins>  
   </build>
+
+  <repositories>  
+    <repository>  
+      <id>spring-milestones</id>  
+      <url>http://repo.spring.io/milestone</url>  
+      <snapshots><enabled>true</enabled></snapshots>  
+    </repository>  
+  </repositories>  
+  <pluginRepositories>  
+    <pluginRepository>  
+      <id>spring-milestones</id>  
+      <url>http://repo.spring.io/milestone</url>  
+    </pluginRepository>  
+  </pluginRepositories>  
 </project>
